@@ -27,6 +27,8 @@ interface CacheResponse {
   }
 }
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8081'
+
 export default function Home() {
   const [sessionId, setSessionId] = useState('')
   const [cacheData, setCacheData] = useState<CacheResponse | null>(null)
@@ -45,7 +47,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        `http://localhost:8081/api/dashboard/cache/${sessionId}`,
+        `${API_BASE_URL}/api/dashboard/cache/${sessionId}`,
         {
           headers: {
             'accept': 'application/json',

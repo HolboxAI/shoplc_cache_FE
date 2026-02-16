@@ -24,21 +24,34 @@ A Next.js frontend application to view session cache data from the dashboard API
 npm install
 ```
 
-2. Run the development server:
+2. Configure environment variables:
+
+Create a `.env` file in the root directory (or copy from `.env.example`):
+```bash
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8081
+```
+
+You can change the API URL to match your backend server address.
+
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### API Configuration
 
-The application expects the API to be running at:
+The application uses the `NEXT_PUBLIC_API_BASE_URL` environment variable to configure the API endpoint.
+
+Default configuration:
 ```
-http://localhost:8081/api/dashboard/cache/{session_id}
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8081
 ```
 
-Make sure your backend API is running on port 8081 before using the frontend.
+The API endpoint will be: `{NEXT_PUBLIC_API_BASE_URL}/api/dashboard/cache/{session_id}`
+
+Make sure your backend API is running before using the frontend.
 
 ## Usage
 
