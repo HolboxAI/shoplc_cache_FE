@@ -50,6 +50,18 @@ export default function OrderDetailsCard({ data }: { data: OrderDetailsData }) {
     }
   }
 
+  // Check if data.value exists and has at least one element
+  if (!data.value || data.value.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Order Details</h2>
+        <div className="text-center text-gray-500 py-8">
+          No order details available
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Order Details</h2>
@@ -101,7 +113,7 @@ export default function OrderDetailsCard({ data }: { data: OrderDetailsData }) {
             )}
 
             {/* Order Items */}
-            {order.items.length > 0 && (
+            {order.items && order.items.length > 0 && (
               <div className="mt-4">
                 <h4 className="font-semibold text-gray-800 mb-2">Items:</h4>
                 <div className="space-y-3">
@@ -157,7 +169,7 @@ export default function OrderDetailsCard({ data }: { data: OrderDetailsData }) {
               </div>
             )}
 
-            {order.items.length === 0 && (
+            {(!order.items || order.items.length === 0) && (
               <div className="text-center text-gray-500 py-4">
                 No item details available
               </div>

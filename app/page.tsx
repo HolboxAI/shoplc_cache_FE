@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import BudgetPayCard from '@/components/BudgetPayCard'
-import OrderDetailsCard from '@/components/OrderDetailsCard'
-import RefundMessageCard from '@/components/RefundMessageCard'
+import JsonViewer from '@/components/JsonViewer'
 
 interface CacheResponse {
   session_id: string
@@ -110,39 +108,7 @@ export default function Home() {
 
         {/* Results Section */}
         {cacheData && (
-          <div className="space-y-6">
-            {/* Session Info */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Session Information
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <span className="font-semibold text-gray-600">Session ID:</span>
-                  <p className="text-gray-800 break-all">{cacheData.session_id}</p>
-                </div>
-                <div>
-                  <span className="font-semibold text-gray-600">Found in Date:</span>
-                  <p className="text-gray-800">{cacheData.found_in_date}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Budget Pay Section */}
-            {cacheData.cache_data.budgetpay && (
-              <BudgetPayCard data={cacheData.cache_data.budgetpay} />
-            )}
-
-            {/* Refund Message Section */}
-            {cacheData.cache_data.refund_message && (
-              <RefundMessageCard data={cacheData.cache_data.refund_message} />
-            )}
-
-            {/* Order Details Section */}
-            {cacheData.cache_data.orderdetails && (
-              <OrderDetailsCard data={cacheData.cache_data.orderdetails} />
-            )}
-          </div>
+          <JsonViewer data={cacheData} />
         )}
       </div>
     </main>

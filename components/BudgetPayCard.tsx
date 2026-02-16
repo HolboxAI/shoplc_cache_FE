@@ -28,6 +28,18 @@ interface BudgetPayData {
 }
 
 export default function BudgetPayCard({ data }: { data: BudgetPayData }) {
+  // Check if data.value exists and has at least one element
+  if (!data.value || data.value.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Budget Pay Information</h2>
+        <div className="text-center text-gray-500 py-8">
+          No Budget Pay information available
+        </div>
+      </div>
+    )
+  }
+
   const budgetPayInfo = data.value[0]
 
   return (
@@ -75,7 +87,7 @@ export default function BudgetPayCard({ data }: { data: BudgetPayData }) {
       </div>
 
       {/* Last Installments */}
-      {budgetPayInfo.LastInstallments.length > 0 && (
+      {budgetPayInfo.LastInstallments && budgetPayInfo.LastInstallments.length > 0 && (
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Last Installments</h3>
           <div className="overflow-x-auto">
@@ -114,7 +126,7 @@ export default function BudgetPayCard({ data }: { data: BudgetPayData }) {
       )}
 
       {/* Next Installment */}
-      {budgetPayInfo.NextInstallment.length > 0 && (
+      {budgetPayInfo.NextInstallment && budgetPayInfo.NextInstallment.length > 0 && (
         <div className="mb-6">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Next Installment</h3>
           <div className="bg-blue-50 p-4 rounded-lg">
@@ -130,7 +142,7 @@ export default function BudgetPayCard({ data }: { data: BudgetPayData }) {
       )}
 
       {/* Pending Installments */}
-      {budgetPayInfo.PendingInstallments.length > 0 && (
+      {budgetPayInfo.PendingInstallments && budgetPayInfo.PendingInstallments.length > 0 && (
         <div className="mb-4">
           <h3 className="text-lg font-semibold text-gray-800 mb-3">Pending Installments</h3>
           <div className="overflow-x-auto">
